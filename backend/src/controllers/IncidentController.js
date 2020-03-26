@@ -1,6 +1,6 @@
 const connection = require('../database/connection')
 
-module.exports ={ 
+module.exports = { 
     async index(request, response) {
         const { page = 1 } = request.query;
 
@@ -45,9 +45,8 @@ module.exports ={
             .where('id', id)
             .select('ong_id')
             .first();
-
         if(incident.ong_id !== ong_id) {
-            return response.status(401).json({ error: 'Operation not permitted.'})
+            return response.status(401).json({ error: 'Operation not permitted.'});
         }
 
         await connection('incidents').where('id', id).delete();
